@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Find Health Centers - TeleHealth Connect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Find Nearby Health Centers, {{ session['user_name'] }}!</h1>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p class="error">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/find-health-centers">
+            <label for="user_location">Enter your location:</label><br>
+            <input type="text" id="user_location" name="user_location" value="{{ user_location or '' }}"
+                required><br><br>
+            <button type="submit">Find Nearby Centers</button>
+        </form>
+        {% if health_centers %}
+        <ul>
+            {% for center in health_centers %}
+            <li>
+                Name: {{ center.name }}, Location: {{ center.location }}
+                <form method="POST" action="/book-appointment" style="display:inline;">
+                    <input type="hidden" name="date_time" value="{{ current_datetime }}">
+                    <input type="hidden" name="location" value="{{ center.location }}">
+                    <button type="submit">Book at this Center</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No health centers available near your location.</p>
+        {% endif %}
+        <a href="/dashboard">Back to Dashboard</a>
+    </div>
+</body>
+
+</html>

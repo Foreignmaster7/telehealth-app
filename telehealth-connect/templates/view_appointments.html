@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>View Appointments - TeleHealth Connect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Your Appointments, {{ session['user_name'] }}!</h1>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p class="error">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% if appointments %}
+        <ul>
+            {% for appointment in appointments %}
+            <li>
+                Date: {{ appointment.date_time.strftime('%Y-%m-%d %H:%M') }},
+                Location: {{ appointment.location }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No appointments booked yet.</p>
+        {% endif %}
+        <a href="/dashboard">Back to Dashboard</a>
+    </div>
+</body>
+
+</html>

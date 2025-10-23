@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - TeleHealth Connect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Your Dashboard, {{ session['user_name'] }}!</h1>
+        <p>This is your personal dashboard where you can manage your health appointments.</p>
+        <ul>
+            <li><a href="/book-appointment">Book a Consultation</a></li>
+            <li><a href="/view-appointments">View Appointments</a></li>
+            <li><a href="/find-health-centers">Find Nearby Health Centers</a></li>
+        </ul>
+        <a href="/logout">Logout</a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Book Appointment - TeleHealth Connect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Book a Consultation</h1>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p class="error">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/book-appointment">
+            <label for="date_time">Date and Time:</label><br>
+            <input type="datetime-local" id="date_time" name="date_time" required><br><br>
+            <label for="location">Location:</label><br>
+            <input type="text" id="location" name="location" required><br><br>
+            <button type="submit">Book Appointment</button>
+        </form>
+        <a href="/dashboard">Back to Dashboard</a>
+    </div>
+</body>
+
+</html>
