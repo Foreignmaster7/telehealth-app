@@ -1,0 +1,16 @@
+﻿# Python
+__pycache__/
+venv/
+*.pyc
+
+# System
+AppData/
+Desktop/
+Documents/
+Downloads/
+*.pdf
+*.sql
+
+# IDE
+.vscode/
+.idea/
